@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'> -->
+        <style>
+            .headingd {
+                text-align: center;
+            }
+            .create-room {
+                text-align: right;
+            }
+            .container {
+                display: grid;
+                grid-template-columns: 1fr 3fr 1fr;
+                gap: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        {% extends 'main.html' %} {% block content %}
+        <p class="create-room">
+            <a href="{% url 'create-room' %}">Create A Room</a>
+        </p>
+        <hr />
+        <div class="container">
+            <div>
+                {% include 'myapp/topic_component.html' %}
+            </div>
+            <div>
+                <h2>Rooms</h2>
+                {%if room_count > 1 %}
+                <p>{{room_count}} rooms available</p>
+                {% else%} <p>{{room_count}} room available </p>{% endif %}
+                <hr />
+                {% include 'myapp/feed_component.html' %}
+            </div>
+            <div>
+                {% include 'myapp/activity_component.html' %}
+            </div>
+        </div>
+        {% endblock %}
+    </body>
+</html>
